@@ -28,13 +28,13 @@ export const ViewPort = ({}) => {
             }
         };
     
-        input.addEventListener(
+        input?.addEventListener(
             "change",
         
             async (changed) => {
-                const file = changed.target.files[0];
+                const file = changed?.target?.files[0];
                 const ifcURL = URL.createObjectURL(file);
-                viewer.IFC.loadIfcUrl(ifcURL, true, () => console.log('Loading...'), (e) => console.log('Failed to load...', e));
+                viewer.IFC.loadIfcUrl(ifcURL, true, () => console.log('Loading...'), (e: any) => console.log('Failed to load...', e));
             },
         
             false

@@ -1,3 +1,8 @@
+import { FileTreeBar } from "@/components/FileTreeBar/FileTreeBar";
+import { PrimaryHeader } from "@/components/PrimaryHeader/PrimaryHeader";
+import { PropertiesBar } from "@/components/PropertiesBar/PropertiesBar";
+import { SecondaryHeader } from "@/components/SecondaryHeader/SecondaryHeader";
+import { ViewPort } from "@/components/ViewPort/ViewPort";
 import styled from "styled-components";
 
 
