@@ -22,7 +22,7 @@ const InfoView = styled.div`
 `
 
 
-export default function ModelScreen ({}) {
+export default function ModelPage ({}) {
     return (
         <Container>
             <PrimaryHeader />

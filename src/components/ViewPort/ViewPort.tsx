@@ -1,44 +1,76 @@
+'use client'
+
 import React, { useEffect } from "react";
-import { Color } from "three";
-import { IfcViewerAPI } from "web-ifc-viewer";
+import * as THREE from 'three';
+import * as OBC from 'openbim-components';
 
 export const ViewPort = ({}) => {
     useEffect(() => {
 
-        const container = document.getElementById("viewer-container");
-        const viewer = new IfcViewerAPI({
-            container,
-            backgroundColor: new Color(0xffffff),
-        });
-        viewer.axes.setAxes();
-        viewer.grid.setGrid();
-        viewer.IFC.setWasmPath('../../')
-        console.log(viewer)
-        const input = document.getElementById("file-input");
+        const container = document.getElementById("viewer-container") as HTMLElement;
+
+        const components = new OBC.Components();
+        components.scene = new OBC.SimpleScene(components);
+        components.renderer = new OBC.SimpleRenderer(components, container);
+        components.camera = new OBC.SimpleCamera(components);
+        components.raycaster = new OBC.SimpleRaycaster(components);
+
+        components.init();
+
+        const scene = components.scene.get();
+        scene.castShadow = true;
         
-        window.ondblclick = () => viewer.IFC.selector.pickIfcItem(true);
-        window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
-        viewer.clipper.active = true;
+        //adjusting scene and camera
+        components.camera.get().lookAt(0, 0, 0);
+        components.camera.get().position.set(10, 10, 10);
+
+        //adding grid
+        const grid = new OBC.SimpleGrid(components);
+
+        //create random cube
+        const boxMaterial = new THREE.MeshStandardMaterial({ color: '#6528D7' });
+        const boxGeometry = new THREE.BoxGeometry(3, 3, 3);
+        const cube = new THREE.Mesh(boxGeometry, boxMaterial);
+        cube.position.set(0, 1.5, 0);
+        scene.add(cube);
+
+        //adding some light to the scene
+        const light = new THREE.AmbientLight();
+        scene.add(light);
+
+        // const viewer = new THREE.IfcViewerAPI({
+        //     container,
+        //     backgroundColor: new THREE.Color(0xffffff),
+        // });
+        // viewer.axes.setAxes();
+        // viewer.grid.setGrid();
+        // viewer.IFC.setWasmPath('../../')
+        // console.log(viewer)
+        // const input = document.getElementById("file-input");
         
-        window.onkeydown = (event) => {
-            if (event.code === "KeyP") {
-                viewer.clipper.createPlane();
-            } else if (event.code === "KeyO") {
-                viewer.clipper.deletePlane();
-            }
-        };
+        // window.ondblclick = () => viewer.IFC.selector.pickIfcItem(true);
+        // window.onmousemove = () => viewer.IFC.selector.prePickIfcItem();
+        // viewer.clipper.active = true;
+        
+        // window.onkeydown = (event) => {
+        //     if (event.code === "KeyP") {
+        //         viewer.clipper.createPlane();
+        //     } else if (event.code === "KeyO") {
+        //         viewer.clipper.deletePlane();
+        //     }
+        // };
     
-        input?.addEventListener(
-            "change",
+        // input?.addEventListener(
+        //     "change",
         
-            async (changed) => {
-                const file = changed?.target?.files[0];
-                const ifcURL = URL.createObjectURL(file);
-                viewer.IFC.loadIfcUrl(ifcURL, true, () => console.log('Loading...'), (e: any) => console.log('Failed to load...', e));
-            },
+        //     async (changed) => {
+        //         const file = changed?.target?.files[0];
+        //         const ifcURL = URL.createObjectURL(file);
+        //         viewer.IFC.loadIfcUrl(ifcURL, true, () => console.log('Loading...'), (e: any) => console.log('Failed to load...', e));
+        //     },
         
-            false
-        );
+        //     false
+        // );
         // async function loadIfc(url) {
         //     const model = await viewer.IFC.loadIfcUrl(url);
         //     viewer.shadowDropper.renderShadow(model.modelID);
@@ -48,6 +80,9 @@ export const ViewPort = ({}) => {
 
 
     return(
-        <></>
+        <div id="viewer-container" style={{
+            width: '100vw',
+            height: '100vh',
+        }}></div>
     )
 }
