@@ -3,18 +3,22 @@
 import WelcomeHeader from "@/components/WelcomeHeader/WelcomeHeader";
 import Lottie from "lottie-react";
 import welcome_animation from "@/assets/welcome_animation.json"
-import moving_square from "@/assets/moving_square.json";
+import CreditFooter from "@/components/CreditFooter/CreditFooter";
+import Link from "next/link";
 
 export default function WelcomePage() {
   return (
     <>
         <WelcomeHeader />
-        <div className="w-full h-full flex flex-row justify-evenly items-center">
-            <Lottie 
-                className="w-2/4 my-6"
-                animationData={welcome_animation} 
-                loop={false}
-            />
+        <div className="w-full h-full flex flex-col justify-evenly items-center">
+            <div className="w-2/4 my-6">
+                <Lottie 
+                    className="w-full"
+                    animationData={welcome_animation} 
+                    loop={false}
+                />
+            </div>
+           
             <div className="flex flex-col justify-center items-center">
                 <div className="flex flex-row flex-wrap justify-center items-center mb-3">
                     <h1 className="text-h1 mr-2 font-sans">
@@ -24,14 +28,15 @@ export default function WelcomePage() {
                         DESIGN EVERYWHERE
                     </h1>
                 </div>
-                <button
-                    className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2"
+                <Link
+                    className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2 cursor-pointer"
+                    href="/register"
                 >
                     Get Started
-                </button>
+                </Link>
             </div>
         </div>
-       
+       <CreditFooter />
     </>
   )
 }

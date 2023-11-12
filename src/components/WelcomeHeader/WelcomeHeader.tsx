@@ -1,7 +1,7 @@
 
 export default function WelcomeHeader() {
     return (
-        <nav className="mx-auto px-5 py-3 flex flex-row justify-between items-center sticky">
+        <nav className="mx-auto py-3 flex flex-row justify-around items-center sticky">
            <h1 className="text-primary text-h1 font-semibold">
                 CADiX
             </h1>
