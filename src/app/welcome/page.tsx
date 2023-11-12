@@ -28,12 +28,21 @@ export default function WelcomePage() {
                         DESIGN EVERYWHERE
                     </h1>
                 </div>
-                <Link
-                    className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2 cursor-pointer"
-                    href="/register"
-                >
-                    Get Started
-                </Link>
+                <div className="flex ">
+                    <Link
+                        className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2 cursor-pointer mr-6"
+                        href="/register"
+                    >
+                        Get Started
+                    </Link>
+                    <Link
+                        className="border-2 rounded-lg border-primary text-primary text-h3 bg-none px-5 py-2 cursor-pointer"
+                        href="/start"
+                    >
+                        Explore
+                    </Link>
+                </div>
+
             </div>
         </div>
        <CreditFooter />
