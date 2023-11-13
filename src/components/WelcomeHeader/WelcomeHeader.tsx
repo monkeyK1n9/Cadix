@@ -1,22 +1,26 @@
+import Link from "next/link";
 
 export default function WelcomeHeader() {
     return (
         <nav className="mx-auto py-3 flex flex-row justify-around items-center sticky">
-           <h1 className="text-primary text-h1 font-semibold">
+            <Link className="text-primary text-4xl font-bold"
+                href="/welcome"
+            >
                 CADiX
-            </h1>
+            </Link>
            <div>
-                <button
+                <Link
                     className="border-2 rounded-lg border-primary bg-none text-primary px-3 py-2 mr-3"
-                    type="button"
+                    href="/login"                    
                 >
                     Log in
-                </button>
-                <button
+                </Link>
+                <Link
                     className="border-2 rounded-lg border-primary text-white bg-primary px-3 py-2"
+                    href="/register"
                 >
                     Sign up
-                </button>
+                </Link>
            </div>
         </nav>
     )

@@ -4,7 +4,7 @@ import {colors} from './color'
 import {space, lineWeight, lineHeight} from './spacing'
 import {fonts, fontWeights, fontSizes} from './fonts'
 
-export default {
+const theme = {
     colors,
     space,
     lineWeight,
@@ -13,3 +13,5 @@ export default {
     fontWeights,
     fontSizes
 }
+
+export default theme

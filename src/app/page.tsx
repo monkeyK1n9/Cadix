@@ -3,14 +3,20 @@
 import { getUser } from '@/lib/user'
 import Image from 'next/image'
 import { redirect } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-export default async function HomePage() {
+export default function HomePage() {
+  const [user, setUser] = useState(null)
 
-  const user = getUser();
+  useEffect(() => {
+    const userData = async () => {
+      const res = await getUser();
 
-  const userData = await user;
+      setUser(res);
+    }
+  }, [])
 
-  if (!userData) {
+  if (!user) {
     redirect("/welcome")
   }
   else{

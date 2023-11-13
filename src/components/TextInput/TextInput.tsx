@@ -26,7 +26,7 @@ export default function TextInput(
     
   return (
     <div
-        className="flex flex-col flex-grow"
+        className="flex flex-col flex-grow bg-white w-full"
     >
         <div
             className="flex"
@@ -41,7 +41,7 @@ export default function TextInput(
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            className="border-2 rounded-lg border-info p-2 bg-none w-4/5 my-0 text-black2"
+            className="border-2 rounded-lg border-info p-2 bg-none my-0 text-black2"
             type={type}
         />
         {isObligatory && isError && <p className="text-error mb-0" style={{fontSize: 12, textAlign: 'left', width: 300}}>{errorMessage}</p>}

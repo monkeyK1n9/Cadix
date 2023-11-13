@@ -1,18 +1,30 @@
 import React from 'react'
 import {FaXTwitter} from 'react-icons/fa6'
 import {BsGithub} from 'react-icons/bs'
+import Link from 'next/link'
 
 export default function CreditFooter() {
     return (
         <footer className='bottom-0 absolute mb-3 flex flex-col justify-around items-center w-full md:flex-row'>
             <div className='flex justify-center items-center mb-3'>
                 Contact me: 
-                <FaXTwitter 
-                    className="text-primary text-h3 ml-2"
-                />
-                <BsGithub
-                    className="text-secondary text-h3 ml-2"
-                />
+                <Link
+                    href="https://twitter.com/monkey_K1n9"
+                    target='_blank'
+                >
+                    <FaXTwitter 
+                        className="text-primary text-h3 ml-2"
+                    />
+                </Link>
+
+                <Link
+                    href="https://github.com/monkeyK1n9"
+                    target='_blank'
+                >
+                    <BsGithub
+                        className="text-secondary text-h3 ml-2"
+                    />
+                </Link>
             </div>
 
             <p>
