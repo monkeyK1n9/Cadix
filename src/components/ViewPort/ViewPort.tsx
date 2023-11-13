@@ -4,7 +4,24 @@ import React, { useEffect } from "react";
 import * as THREE from 'three';
 import * as OBC from 'openbim-components';
 
-export const ViewPort = ({}) => {
+export const ViewPort = ({modelId="", isTemplateProject = false}) => {
+    async function loadIfcAsFragments(loader: OBC.FragmentIfcLoader, scene: THREE.Scene) {
+        try {
+
+            const file = await fetch('./Project.ifc');
+            console.log("haha")
+            const data = await file.arrayBuffer();
+            const buffer = new Uint8Array(data);
+            const model = await loader.load(buffer, "Main Toolbar");
+            console.log("hoho")
+            scene.add(model);
+            console.log("done")
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
+
     useEffect(() => {
 
         const container = document.getElementById("viewer-container") as HTMLElement;
@@ -28,11 +45,32 @@ export const ViewPort = ({}) => {
         const grid = new OBC.SimpleGrid(components);
 
         //create random cube
-        const boxMaterial = new THREE.MeshStandardMaterial({ color: '#6528D7' });
-        const boxGeometry = new THREE.BoxGeometry(3, 3, 3);
-        const cube = new THREE.Mesh(boxGeometry, boxMaterial);
-        cube.position.set(0, 1.5, 0);
-        scene.add(cube);
+        // const boxMaterial = new THREE.MeshStandardMaterial({ color: '#6528D7' });
+        // const boxGeometry = new THREE.BoxGeometry(3, 3, 3);
+        // const cube = new THREE.Mesh(boxGeometry, boxMaterial);
+        // cube.position.set(0, 1.5, 0);
+        // scene.add(cube);
+
+        //importing object if template
+        
+        
+        // let fragments = new OBC.FragmentManager(components);
+        let fragmentIfcLoader = new OBC.FragmentIfcLoader(components);
+
+        fragmentIfcLoader.settings.wasm = {
+            path: "https://unpkg.com/web-ifc@0.0.43/",
+            absolute: true,
+        }
+
+        fragmentIfcLoader.settings.webIfc.COORDINATE_TO_ORIGIN = true;
+        fragmentIfcLoader.settings.webIfc.OPTIMIZE_PROFILES = true;
+            
+            
+        
+
+        // if (Boolean(isTemplateProject)) {
+            loadIfcAsFragments(fragmentIfcLoader, scene)
+        // }
 
         //adding some light to the scene
         const light = new THREE.AmbientLight();

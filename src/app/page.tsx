@@ -9,11 +9,12 @@ export default function HomePage() {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const userData = async () => {
+    const getUserData = async () => {
       const res = await getUser();
 
       setUser(res);
     }
+    getUserData();
   }, [])
 
   if (!user) {

@@ -20,7 +20,7 @@ export default function WelcomePage() {
             </div>
            
             <div className="flex flex-col justify-center items-center">
-                <div className="flex flex-row flex-wrap justify-center items-center mb-3">
+                <div className="flex flex-wrap justify-center items-center mb-3 mx-auto min-lg:flex-col">
                     <h1 className="text-h1 mr-2 font-sans">
                         DREAM ONCE,
                     </h1>
@@ -28,9 +28,9 @@ export default function WelcomePage() {
                         DESIGN EVERYWHERE
                     </h1>
                 </div>
-                <div className="flex ">
+                <div className="flex gap-4 justify-center items-center max-md:flex-col">
                     <Link
-                        className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2 cursor-pointer mr-6"
+                        className="border-2 rounded-lg border-primary text-white text-h3 bg-primary px-5 py-2 cursor-pointer"
                         href="/register"
                     >
                         Get Started

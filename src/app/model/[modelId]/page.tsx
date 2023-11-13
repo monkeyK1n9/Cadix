@@ -20,8 +20,15 @@ import { ViewPort } from "@/components/ViewPort/ViewPort";
 //     flex: 0.15;
 // `
 
+type Props = {
+    params: {
+        modelId: string,
+        isTemplateProject: boolean,
+    }
+}
 
-export default function ModelPage ({}) {
+export default function ModelPage ({params: {modelId, isTemplateProject}}: Props) {
+
     return (
         // <Container>
         //     <PrimaryHeader />
@@ -35,7 +42,7 @@ export default function ModelPage ({}) {
         //     </DisplayView>
         // </Container>
         <div>
-            <ViewPort />
+            <ViewPort modelId={modelId} isTemplateProject={isTemplateProject}/>
         </div>
     )
 }
