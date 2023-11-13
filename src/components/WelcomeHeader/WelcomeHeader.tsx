@@ -31,7 +31,7 @@ export default function WelcomeHeader() {
                 CADiX
             </Link>
 
-            {!user ? (
+            {user ? (
                 <div className="relative">
                     <Image
                         src={user?.imageUrl ? user.imageUrl : Sample_User_Icon}

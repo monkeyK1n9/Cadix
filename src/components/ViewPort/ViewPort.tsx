@@ -114,6 +114,8 @@ export const ViewPort = ({modelId="", isTemplateProject = false}) => {
         //     viewer.shadowDropper.renderShadow(model.modelID);
         //   }
         //   loadIfc('src\assets\Project2.ifc')
+
+        return () => {fragmentIfcLoader.dispose();}
     }, [])
 
 
