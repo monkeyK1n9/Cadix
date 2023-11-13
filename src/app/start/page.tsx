@@ -22,7 +22,7 @@ export default async function StartPage() {
                             </h1>
                         </div>
                     }
-                    <div className="flex flex-col">
+                    <div className="flex flex-col mb-3">
                         <h1 className="text-gray3 text-h1 font-bold">
                             Discover
                         </h1>
