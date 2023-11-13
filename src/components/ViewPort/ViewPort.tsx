@@ -12,8 +12,8 @@ export const ViewPort = ({modelId="", isTemplateProject = false}) => {
             console.log("haha")
             const data = await file.arrayBuffer();
             const buffer = new Uint8Array(data);
-            const model = await loader.load(buffer, "Main Toolbar");
             console.log("hoho")
+            const model = await loader.load(buffer, "Main Toolbar");
             scene.add(model);
             console.log("done")
         }

@@ -1,3 +1,5 @@
+"use client"
+
 import { FileTreeBar } from "@/components/FileTreeBar/FileTreeBar";
 import { PrimaryHeader } from "@/components/PrimaryHeader/PrimaryHeader";
 import { PropertiesBar } from "@/components/PropertiesBar/PropertiesBar";
