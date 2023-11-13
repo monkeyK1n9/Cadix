@@ -6,6 +6,7 @@ import TextInput from "@/components/TextInput/TextInput";
 import { useState } from "react";
 import { validateEmail, validatePassword } from "@/utils/regex";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const INITIAL_USER_DATA = {
     email: "",
@@ -14,8 +15,9 @@ const INITIAL_USER_DATA = {
 
 export default function LoginPage() {
     const [userData, setUserData] = useState(INITIAL_USER_DATA)
-    const [hasAgreed, setHasAgreed] = useState(false);
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(false);
+
+    const router = useRouter();
 
     const onChange = (e: any) => {
         setUserData(prev => ({
@@ -27,6 +29,19 @@ export default function LoginPage() {
 
     const handleValidation = () => {
         setIsChecked(true);
+
+        let check: boolean = false;
+
+        if (
+            !validateEmail(userData.email) ||
+            !validatePassword(userData.password)
+        ) {
+            check = true;
+        }
+
+        if (!check) {
+            router.replace('/start')
+        }
     }
 
 
