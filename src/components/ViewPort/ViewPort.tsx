@@ -18,14 +18,13 @@ export const ViewPort = ({modelId = "", isTemplateProject = false}) => {
         components.renderer = new OBC.SimpleRenderer(components, container);
         components.camera = new OBC.SimpleCamera(components);
         components.raycaster = new OBC.SimpleRaycaster(components);
-
+        
         components.init();
 
         const grid = new OBC.SimpleGrid(components);
 
         const scene = components.scene.get();
 
-        const fragments = new OBC.FragmentManager(components);
         let ifcLoader = new OBC.FragmentIfcLoader(components);
 
         ifcLoader.settings.webIfc.COORDINATE_TO_ORIGIN = true;
@@ -45,12 +44,15 @@ export const ViewPort = ({modelId = "", isTemplateProject = false}) => {
           // path: "../../wasm",
           absolute: true
         }
+        
+        const file = await fetch("https://firebasestorage.googleapis.com/v0/b/shomiapp-7b93f.appspot.com/o/Project.ifc?alt=media&token=f2643ca7-6f34-4f18-938f-44dff1c09167")
+        const data = await file.json();
+        const buffer = JSON.parse(data.data);
+        console.log(buffer);
+        const model = await ifcLoader.load(buffer, "main");
+        scene.add(model)
 
-        const buffer = Buffer.from(Project)
-        const uint8Array = new Uint8Array(buffer);
-        const model = await ifcLoader.load(uint8Array, "main");
-        // const model = await fragments.load(buffer);
-        console.log("finished loading")
+        console.log("finished loading", typeof(Project))
 
         const boxMaterial = new THREE.MeshStandardMaterial({ color: '#6528D7' });
         const boxGeometry = new THREE.BoxGeometry(3, 3, 3);
@@ -58,7 +60,6 @@ export const ViewPort = ({modelId = "", isTemplateProject = false}) => {
         cube.position.set(0, 1.5, 0);
         scene.add(cube);
 
-        scene.add(model)
       }
       catch (err) {
         console.log(err);

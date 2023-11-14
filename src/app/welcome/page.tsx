@@ -31,15 +31,9 @@ export default function WelcomePage() {
                 <div className="flex gap-4 justify-center items-center max-md:flex-col">
                     <Link
                         className="border-2 rounded-lg border-primary text-white text-h3 text-center bg-primary px-5 py-2 cursor-pointer max-md:w-full"
-                        href="/register"
-                    >
-                        Get Started
-                    </Link>
-                    <Link
-                        className="border-2 rounded-lg border-primary text-primary text-center text-h3 bg-none px-5 py-2 cursor-pointer max-md:w-full"
                         href="/start"
                     >
-                        Explore
+                        Get Started
                     </Link>
                 </div>
 
