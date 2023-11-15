@@ -57,7 +57,7 @@ export default function RegisterPage() {
 
 
     return (
-        <div className="w-full h-full bg-gray5 flex">
+        <div className="w-full h-screen bg-gray5 flex">
             <div className="bg-gradient-to-br from-primary to-secondary w-full h-full flex flex-col justify-center items-center max-lg:hidden">
                 <h1 className="text-tertiary font-bold text-6xl font-sans">
                     CADiX
@@ -72,7 +72,7 @@ export default function RegisterPage() {
                 </h1>
             </div>
 
-            <div className="w-full h-full flex justify-center items-center overflow-scroll">
+            <div className="w-full h-screen flex justify-center items-center overflow-scroll">
                 <div className="bg-white shadow-md w-4/6 rounded-lg px-4 py-4 flex flex-col items-center justify-center max-md:px-3 max-md:w-5/6 overflow-scroll">
                     <h3 className="text-h3 font-semibold text-gray2 mb-3">
                         Create Account

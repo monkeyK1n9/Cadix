@@ -5,6 +5,7 @@ import { PrimaryHeader } from "@/components/PrimaryHeader/PrimaryHeader";
 import { PropertiesBar } from "@/components/PropertiesBar/PropertiesBar";
 import { SecondaryHeader } from "@/components/SecondaryHeader/SecondaryHeader";
 import { ViewPort } from "@/components/ViewPort/ViewPort";
+import { useParams } from "next/navigation";
 
 
 // const Container = styled.div`
@@ -22,15 +23,8 @@ import { ViewPort } from "@/components/ViewPort/ViewPort";
 //     flex: 0.15;
 // `
 
-type Props = {
-    params: {
-        modelId: string,
-        isTemplateProject: boolean,
-    }
-}
-
-export default function ModelPage ({params: {modelId, isTemplateProject}}: Props) {
-
+export default function ModelPage () {
+    const params = useParams();
     return (
         // <Container>
         //     <PrimaryHeader />
@@ -44,7 +38,7 @@ export default function ModelPage ({params: {modelId, isTemplateProject}}: Props
         //     </DisplayView>
         // </Container>
         <div>
-            <ViewPort modelId={modelId} isTemplateProject={isTemplateProject}/>
+            <ViewPort modelId={params.modelId as string}/>
         </div>
     )
 }

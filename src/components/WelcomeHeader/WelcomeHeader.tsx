@@ -35,11 +35,20 @@ export default function WelcomeHeader() {
             </Link>
 
             {pathName === "/welcome" ?
-                <Link href="/blog"
-                    className="border-2 rounded-lg border-primary bg-none text-primary px-3 py-2"
-                >
-                    Blog
-                </Link>
+                <div>
+                    <Link 
+                        className="border-2 rounded-lg border-primary bg-none text-primary px-3 py-2 mr-3"
+                        href="/blog"
+                    >
+                        Blog
+                    </Link>
+                    <Link
+                        className="border-2 rounded-lg border-primary text-white bg-primary px-3 py-2"
+                        href="/start"
+                    >
+                        Projects
+                    </Link>
+                </div>
                 :
                 user ? (
                     <div className="relative">

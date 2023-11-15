@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/three": "^0.158.2",
     "file-loader": "^6.2.0",
+    "firebase": "^10.6.0",
     "lottie-react": "^2.4.0",
     "next": "14.0.2",
     "next-sitemap": "^4.2.3",

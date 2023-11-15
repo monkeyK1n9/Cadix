@@ -1,12 +1,13 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import * as OBC from "openbim-components"
 import * as THREE from "three"
-import Project from "@/assets/Project.ifc"
+import { getDownloadURL, ref } from 'firebase/storage'
+import {storage} from "../../../firebase-config"
 
-export const ViewPort = ({modelId = "", isTemplateProject = false}) => {
-  const [modelCount, setModelCount] = React.useState(0)
+export const ViewPort = ({modelId = ""}) => {
+
 
   React.useEffect(() => {
     const initialise = async () => {
@@ -20,45 +21,37 @@ export const ViewPort = ({modelId = "", isTemplateProject = false}) => {
         components.raycaster = new OBC.SimpleRaycaster(components);
         
         components.init();
+        components.uiEnabled = false;
 
         const grid = new OBC.SimpleGrid(components);
 
         const scene = components.scene.get();
 
-        let ifcLoader = new OBC.FragmentIfcLoader(components);
+        //@ts-ignore
+        components.scene.setup()
+        //@ts-ignore
+        scene.lookAt(0, 0, 0);
 
-        ifcLoader.settings.webIfc.COORDINATE_TO_ORIGIN = true;
-        ifcLoader.settings.webIfc.OPTIMIZE_PROFILES = true;
+        if (modelId == "project_template") {
 
-        // const excludedCats = [
-        //   WEBIFC.IFCTENDONANCHOR,
-        //   WEBIFC.IFCREINFORCINGBAR,
-        //   WEBIFC.IFCREINFORCINGELEMENT,
-        // ];
-        
-        // for(const cat of excludedCats) {
-        //   ifcLoader.settings.excludedCategories.add(cat);
-        // }
-        ifcLoader.settings.wasm = {
-          path: "https://unpkg.com/web-ifc@0.0.43/",
-          // path: "../../wasm",
-          absolute: true
+          let ifcLoader = new OBC.FragmentIfcLoader(components);
+  
+          ifcLoader.settings.webIfc.COORDINATE_TO_ORIGIN = true;
+          ifcLoader.settings.webIfc.OPTIMIZE_PROFILES = true;
+  
+          ifcLoader.settings.wasm = {
+            path: "https://unpkg.com/web-ifc@0.0.43/",
+            absolute: true
+          }
+          
+          const url = await getDownloadURL(ref(storage, "Project.ifc"))
+          const file = await fetch(url)
+          const data = await file.arrayBuffer();
+          const buffer = new Uint8Array(data)
+          const model = await ifcLoader.load(buffer, "main");
+  
+          scene.add(model)
         }
-        
-        const file = await fetch("https://firebasestorage.googleapis.com/v0/b/shomiapp-7b93f.appspot.com/o/Project.ifc?alt=media&token=f2643ca7-6f34-4f18-938f-44dff1c09167")
-        const data = await file.json();
-        const buffer = JSON.parse(data.data);
-        console.log(buffer);
-        const model = await ifcLoader.load(buffer, "main");
-        scene.add(model)
-
-        console.log("finished loading", typeof(Project))
-
-        const boxMaterial = new THREE.MeshStandardMaterial({ color: '#6528D7' });
-        const boxGeometry = new THREE.BoxGeometry(3, 3, 3);
-        const cube = new THREE.Mesh(boxGeometry, boxMaterial);
-        cube.position.set(0, 1.5, 0);
-        scene.add(cube);
 
       }
       catch (err) {

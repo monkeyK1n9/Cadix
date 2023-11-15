@@ -29,13 +29,7 @@ export default async function StartPage() {
                         <div className="mb-3" />
                         <div className="w-60 rounded-lg overflow-hidden shadow-md bg-white">
                             <Link
-                                href={{
-                                    pathname: '/model/project_template',
-                                    query: {
-                                        isTemplate: true,
-                                        modelId: "project_template"
-                                    }
-                                }}
+                                href={'/model/project_template'}
                             >
                                 <Image
                                     src={Project_Preview}
