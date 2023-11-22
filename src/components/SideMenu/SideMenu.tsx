@@ -1,6 +1,6 @@
 
 export default function SideMenu() {
     return (
-        <div>SideMenu</div>
+        <div className="flex flex-col">SideMenu</div>
     )
 }
