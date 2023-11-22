@@ -9,6 +9,6 @@ import React from "react";
 // `
 export const SecondaryHeader = ({}) => {
     return (
-        <div></div>
+        <div className="flex flex-col flex-0.125 h-1/6"></div>
     )
 }
