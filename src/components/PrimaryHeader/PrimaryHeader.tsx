@@ -8,6 +8,6 @@ import React from "react";
 // `
 export const PrimaryHeader = ({}) => {
     return (
-        <div></div>
+        <div className="flex h-full"></div>
     )
 }
