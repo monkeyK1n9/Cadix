@@ -9,6 +9,6 @@ import React from "react";
 // `
 export const FileTreeBar = ({}) => {
     return (
-        <div></div>
+        <div className="flex flex-col flex-1/2 w-full"></div>
     )
 }
