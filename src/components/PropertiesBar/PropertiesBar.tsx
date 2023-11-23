@@ -9,6 +9,6 @@ import React from "react";
 // `
 export const PropertiesBar = ({}) => {
     return (
-        <div></div>
+        <div className="flex flex-col flex-1/2 w-1/6"></div>
     )
 }
