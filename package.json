@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@types/three": "^0.158.2",
+    "@vercel/analytics": "^1.1.1",
+    "bim-fragment": "^1.2.0",
     "file-loader": "^6.2.0",
     "firebase": "^10.6.0",
     "lottie-react": "^2.4.0",
@@ -22,7 +24,8 @@
     "react-icons": "^4.11.0",
     "sharp": "^0.32.6",
     "swr": "^2.2.4",
-    "three": "^0.158.0"
+    "three": "^0.158.0",
+    "web-ifc": "^0.0.46"
   },
   "devDependencies": {
     "@types/node": "^20",
