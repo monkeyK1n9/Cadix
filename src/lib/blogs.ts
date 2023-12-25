@@ -31,17 +31,17 @@ export async function getBlogsMeta(): Promise<Meta[] | undefined> {
         .filter(path => path.endsWith(".mdx"))
         .map(obj => obj.split("/")[1])
 
-    let posts: Meta[] = [];
+    let blogs: Meta[] = [];
 
     for (const repoFile of filesArray) {
-        const post = await getBlogByName(repoFile);
-        if (post) {
-            const { meta } = post;
-            posts.push(meta)
+        const blog = await getBlogByName(repoFile);
+        if (blog) {
+            const { meta } = blog;
+            blogs.push(meta)
         }
     }
 
-    return posts;
+    return blogs;
 }
 
 export async function getBlogByName(fileName: string): Promise<BlogPost | undefined> {
