@@ -1,7 +1,7 @@
 import { getBlogsMeta } from "@/lib/blogs"
 import BlogElement from "../BlogElement/BlogElement"
 
-export default async function Posts() {
+export default async function Blogs() {
     const blogs = await getBlogsMeta()
     
     if (!blogs) {
