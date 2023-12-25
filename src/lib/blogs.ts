@@ -13,7 +13,7 @@ type FileTree = {
     ]
 }
 
-export async function getPostsMeta(): Promise<Meta[] | undefined> {
+export async function getBlogsMeta(): Promise<Meta[] | undefined> {
     const res = await fetch('https://api.github.com/repos/monkeyK1n9/Cadix_Blogs/git/trees/main?recursive=1', {
         headers: {
             Accept: 'application/vnd.github+json',
@@ -34,7 +34,7 @@ export async function getPostsMeta(): Promise<Meta[] | undefined> {
     let posts: Meta[] = [];
 
     for (const repoFile of filesArray) {
-        const post = await getPostByName(repoFile);
+        const post = await getBlogByName(repoFile);
         if (post) {
             const { meta } = post;
             posts.push(meta)
@@ -44,7 +44,7 @@ export async function getPostsMeta(): Promise<Meta[] | undefined> {
     return posts;
 }
 
-export async function getPostByName(fileName: string): Promise<BlogPost | undefined> {
+export async function getBlogByName(fileName: string): Promise<BlogPost | undefined> {
     const res = await fetch(`https://raw.githubusercontent.com/monkeyK1n9/Cadix_Blogs/main/posts/${fileName}`, {
         headers: {
             Accept: 'application/vnd.github+json',
