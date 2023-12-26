@@ -75,8 +75,8 @@ export default async function Blog({params: { blogId }}: Props) {
                         {tags}
                     </div>
                 </section>
-                <p className='mb-10'>
-                    <Link href="/blogs">⬅ Back</Link>
+                <p className='mb-10 pb-32'>
+                    <Link href="/blogs" className="hover:text-black/70">⬅ Back</Link>
                 </p>
             </div>
         <CreditFooter /> 
