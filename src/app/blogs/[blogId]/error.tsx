@@ -27,7 +27,7 @@ export default function Error({
         Try again
       </button>
       <p className='text-xl'>
-        Or go back to <Link className="underline" href={"/"}>Home 🏠</Link>
+        Or go back to <Link className="underline" href={"/start"}>Home 🏠</Link>
       </p>
     </div>
   )
