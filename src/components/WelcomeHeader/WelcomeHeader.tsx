@@ -27,7 +27,7 @@ export default function WelcomeHeader() {
     }, [])
 
     return (
-        <nav className="mx-auto py-3 flex flex-row justify-around items-center">
+        <nav className="mx-auto py-3 flex flex-row justify-around items-center sticky bg-white top-0 w-screen">
             <Link className="text-primary text-4xl font-bold max-md:text-h3"
                 href="/welcome"
             >
@@ -38,9 +38,9 @@ export default function WelcomeHeader() {
                 <div>
                     <Link 
                         className="border-2 rounded-lg border-primary bg-none text-primary px-3 py-2 mr-3"
-                        href="/blog"
+                        href="/blogs"
                     >
-                        Blog
+                        Blogs
                     </Link>
                     <Link
                         className="border-2 rounded-lg border-primary text-white bg-primary px-3 py-2"

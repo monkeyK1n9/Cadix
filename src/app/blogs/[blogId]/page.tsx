@@ -5,6 +5,8 @@ import getFormattedDate from '@/lib/getFormattedDate'
 import Link from 'next/link'
 import 'highlight.js/styles/github-dark.css'
 import { getBlogByName, getBlogsMeta } from '@/lib/blogs'
+import WelcomeHeader from '@/components/WelcomeHeader/WelcomeHeader'
+import CreditFooter from '@/components/CreditFooter/CreditFooter'
 
 
 type Props = {
@@ -56,24 +58,28 @@ export default async function Blog({params: { blogId }}: Props) {
 
     return (
         <>
-            <h2 className='text-3xl mt-4 mx-0'>{meta.title}</h2>
-            <p className='mt-0 text-sm'>
-                {pubDate}
-            </p>
-            <article>
-                {content}
-            </article>
-            <section>
-                <h3>
-                    Related:
-                </h3>
-                <div className='flex flex-row gap-4'>
-                    {tags}
-                </div>
-            </section>
-            <p className='mb-10'>
-                <Link href="/blogs">⬅ Back</Link>
-            </p>
+        <WelcomeHeader />
+            <div className="mx-auto px-4 md:px-6 prose prose-2xl prose-slate">
+                <h2 className='text-3xl mt-4 mx-0'>{meta.title}</h2>
+                <p className='mt-0 text-sm'>
+                    {pubDate}
+                </p>
+                <article>
+                    {content}
+                </article>
+                <section>
+                    <h3>
+                        Related:
+                    </h3>
+                    <div className='flex flex-row gap-4'>
+                        {tags}
+                    </div>
+                </section>
+                <p className='mb-10'>
+                    <Link href="/blogs">⬅ Back</Link>
+                </p>
+            </div>
+        <CreditFooter /> 
         </>
     )
 }

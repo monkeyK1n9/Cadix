@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function CreditFooter() {
     return (
-        <footer className='bottom-0 absolute mb-3 flex flex-col justify-around items-center w-full md:flex-row'>
+        <footer className='bottom-0 sticky bg-white mb-3 flex flex-col justify-around items-center w-screen md:flex-row'>
             <div className='flex justify-center items-center mb-3'>
                 Contact me: 
                 <Link
@@ -28,7 +28,7 @@ export default function CreditFooter() {
             </div>
 
             <p>
-                &copy;{new Date().getFullYear()} Monkey_K1n9
+                &copy;{new Date().getFullYear()} Monkey_K1n9, All rights reserved
             </p>
             
         </footer>

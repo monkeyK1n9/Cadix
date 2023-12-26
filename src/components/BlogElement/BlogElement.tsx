@@ -11,8 +11,8 @@ export default function BlogElement({blog}: Props) {
     const formattedDate = getFormattedDate(date);
     
     return (
-        <li className='mt-4 text-2xl dark:text-white/90'>
-            <Link href={`/posts/${id}`} className='underline hover:text-black/70 dark:hover:text-white'>
+        <li className='mt-4 text-2xl'>
+            <Link href={`/blogs/${id}`} className='underline hover:text-black/70'>
                 {title}
             </Link>
             <br />
