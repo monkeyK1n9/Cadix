@@ -4,11 +4,20 @@ import { getUser } from "@/lib/user";
 import Project_Preview from "@/assets/Project_Preview.png"
 import Image from "next/image";
 import Link from "next/link";
+import BlogsContainer from "@/components/BlogsContainer/BlogsContainer";
+import { getBlogsMeta } from "@/lib/blogs";
+import BlogElement from "@/components/BlogElement/BlogElement";
 
 export default async function StartPage() {
     const user = getUser();
 
     const userData = await user as any
+
+    const blogs = await getBlogsMeta()
+    
+    if (!blogs) {
+        return <p className="mt-10 text-center">Sorry, no posts available</p>
+    }
 
     return (
         <>
@@ -57,6 +66,15 @@ export default async function StartPage() {
                         <h1 className="text-gray3 text-h1 font-bold">
                             News
                         </h1>
+                        <section className="max-w-2xl">
+                            <ul className="w-full list-none p-0">
+                                {blogs.map(blog => {
+                                    return (
+                                        <BlogElement blog={blog} key={blog.id} />
+                                    )
+                                })}
+                            </ul>
+                        </section>
                     </div>
                 </div>
             </main>
