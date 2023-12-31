@@ -91,10 +91,10 @@ export default function RegisterPage() {
 
     const handleOtpVerification = async () => {
         try {
-
+            //implement send otp for validation and give a toast message then redirect to start page
         }
         catch (err) {
-
+            //permit retrial, sent toast to tell user it failed
         }
     }
 
