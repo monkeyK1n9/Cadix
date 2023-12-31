@@ -29,7 +29,7 @@ export default function WelcomePage() {
                 />
             </div>
            
-            <div className="flex-1 flex-col justify-center items-center ml-6 mr-4">
+            <div className="flex-1 flex-col justify-center items-center mx-4">
                 
                 <div className="flex flex-wrap justify-center items-center mb-4 mx-auto min-lg:flex-col">
                     <h1 className="max-lg:text-3xl text-5xl max-sm:mr-2 font-sans">

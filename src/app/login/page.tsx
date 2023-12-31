@@ -91,7 +91,7 @@ export default function LoginPage() {
                         isError={isChecked && (!userData.password || !validatePassword(userData.password))}
                     />
                     <div className="mb-3" />
-                    <p className="text-left w-full">Don't have an account? <Link href="/register" className="text-primary">Sign up</Link></p>
+                    <p className="text-left w-full">Don't have an account? <Link href="/register" className="text-primary cursor-pointer">Sign up</Link></p>
                     <div className="mb-3" />
                     <button
                         className="border-2 rounded-lg border-primary text-white text-title bg-primary px-5 py-2 cursor-pointer mt-3"
