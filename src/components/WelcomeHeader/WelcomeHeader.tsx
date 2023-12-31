@@ -27,7 +27,7 @@ export default function WelcomeHeader() {
     }, [])
 
     return (
-        <nav className="mx-auto py-3 flex flex-row justify-around items-center sticky bg-white top-0 w-screen">
+        <nav className="mx-auto py-3 flex flex-row justify-around items-center sticky bg-white top-0 w-screen z-50">
             <Link className="text-primary text-4xl font-bold max-md:text-h3"
                 href="/welcome"
             >

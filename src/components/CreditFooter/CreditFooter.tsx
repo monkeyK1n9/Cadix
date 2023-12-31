@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function CreditFooter() {
     return (
         <footer className='bottom-0 fixed bg-white py-3 flex flex-col justify-around items-center w-screen md:flex-row'>
-            <div className='flex justify-center items-center mb-3'>
+            <div className='flex justify-center items-center'>
                 Contact me: 
                 <Link
                     href="https://twitter.com/monkey_K1n9"
