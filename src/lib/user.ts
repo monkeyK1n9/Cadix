@@ -11,3 +11,15 @@ export function setHttpOnlyCookie(name: string, value: string, expirationDays: n
   
     document.cookie = cookieString;
 }
+
+// Function to retrieve a cookie value by name
+export function getCookie(name: string) {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.trim().split('=');
+        if (cookieName === name) {
+            return decodeURIComponent(cookieValue);
+        }
+    }
+    return null;
+}
