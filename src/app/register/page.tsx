@@ -114,6 +114,9 @@ export default function RegisterPage() {
 
                 //save token
                 setHttpOnlyCookie("accessToken", accessToken, 90);
+
+                //save user info
+                localStorage.setItem("userInfo", userInfo);
             }
             else {
                 throw new Error("Failed to verify otp")
