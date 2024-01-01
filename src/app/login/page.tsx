@@ -7,6 +7,8 @@ import { useState } from "react";
 import { validateEmail, validatePassword } from "@/utils/regex";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { setHttpOnlyCookie } from "@/lib/user";
+import toast, {Toaster} from "react-hot-toast";
 
 const INITIAL_USER_DATA = {
     email: "",
@@ -28,8 +30,9 @@ export default function LoginPage() {
         setIsChecked(false)
     }
 
-    const handleValidation = () => {
+    const handleValidation = async () => {
         setIsChecked(true);
+        setLoading(true);
 
         let check: boolean = false;
 
@@ -41,7 +44,48 @@ export default function LoginPage() {
         }
 
         if (!check) {
+            try {
+                //implement send otp for validation and give a toast message then redirect to start page
+                const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/login", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: userData.email,
+                        password: userData.password
+                    })
+                })
+
+                const response = await res.json();
+                const { accessToken, ...userInfo } = response;
+
+                if(accessToken) {
+                    // successful login, we save token and redirect
+                    //save token
+                    setHttpOnlyCookie("accessToken", accessToken, 90);
+
+                    //save user info
+                    localStorage.setItem("userInfo", userInfo);
+
+                    //redirect
+                    router.replace('/start');
+                    // Force a refresh by reloading the current page
+                    window.location.reload();
+                    setLoading(false);
+                }
+                else {
+                    throw new Error("Failed to login");
+                }
+            }
+            catch(err: any) {
+                toast.error(err.message);
+                setLoading(false);
+            }
             router.replace('/start')
+        }
+        else {
+            setLoading(false);
         }
     }
 
@@ -49,6 +93,7 @@ export default function LoginPage() {
 
     return (
         <div className="w-full h-screen bg-gray5 flex">
+            <Toaster />
             <div className="bg-gradient-to-br from-primary to-secondary w-full h-full flex flex-col justify-center items-center max-lg:hidden">
                 <h1 className="text-tertiary font-bold text-6xl font-sans">
                     CADiX
