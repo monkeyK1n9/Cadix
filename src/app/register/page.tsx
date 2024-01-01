@@ -30,6 +30,7 @@ export default function RegisterPage() {
     const [isChecked, setIsChecked] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [otp, setOtp] = useState<string>("");
+    const [userId, setUserId] = useState<string>("");
     const [isVerifyOtp, setIsVerifyOtp] = useState<boolean>(false);
 
     const router = useRouter()
@@ -62,7 +63,6 @@ export default function RegisterPage() {
 
             try {
 
-                console.log(process.env.NEXT_PUBLIC_BACKEND_API_URL)
                 const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/register", {
                     method: 'POST',
                     headers: {
@@ -72,6 +72,7 @@ export default function RegisterPage() {
                 })
                 
                 const response = await res.json();
+                setUserId(response?.data?.userId);
                 setLoading(false);
                 // router.replace('/start')
                 setIsChecked(false)
@@ -91,7 +92,25 @@ export default function RegisterPage() {
 
     const handleOtpVerification = async () => {
         try {
+            if(!otp) {
+                return toast.error("You need to provide an otp")
+            }
             //implement send otp for validation and give a toast message then redirect to start page
+            const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/verifyotp", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId,
+                    otp
+                })
+            })
+
+            const response = await res.json();
+            if(response.status != 'FAILED') {
+                
+            }
         }
         catch (err) {
             //permit retrial, sent toast to tell user it failed
@@ -202,7 +221,7 @@ export default function RegisterPage() {
                             Verify your account
                         </h3> 
                         <h5 className="text-h5 font-medium text-gray1 mb-4">
-                            We have sent a verification code to your email {userData.email}. Check you mail.
+                            We have sent a verification code to your email {userData.email}. Check your spam too.
                         </h5>
                         <input
                             className="w-full tracking-widest border-b-4 px-16 text-center text-secondary font-bold text-4xl focus:outline-none"
