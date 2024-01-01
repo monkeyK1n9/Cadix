@@ -85,6 +85,9 @@ export default function RegisterPage() {
                 setLoading(false);
             }
         }
+        else {
+            setLoading(false);
+        }
     }
 
     const handleGoBack = () => {
