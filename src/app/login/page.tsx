@@ -15,7 +15,8 @@ const INITIAL_USER_DATA = {
 
 export default function LoginPage() {
     const [userData, setUserData] = useState(INITIAL_USER_DATA)
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const router = useRouter();
 
@@ -98,7 +99,7 @@ export default function LoginPage() {
                         onClick={handleValidation}
                         type="button"
                     >
-                        Log In
+                        { loading ? "Loading..." : "Log In"}
                     </button>
                 </div>
                     

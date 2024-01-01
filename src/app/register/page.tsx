@@ -93,6 +93,7 @@ export default function RegisterPage() {
 
     const handleOtpVerification = async () => {
         try {
+            setLoading(true);
             if(!otp) {
                 return toast.error("You need to provide an otp")
             }
@@ -122,6 +123,7 @@ export default function RegisterPage() {
                 router.replace('/start');
                 // Force a refresh by reloading the current page
                 window.location.reload();
+                setLoading(false);
             }
             else {
                 throw new Error("Failed to verify otp")
@@ -130,6 +132,7 @@ export default function RegisterPage() {
         catch (err: any) {
             //permit retrial, sent toast to tell user it failed
             toast.error(err?.message);
+            setLoading(false);
         }
     }
 
