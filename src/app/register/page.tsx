@@ -109,11 +109,15 @@ export default function RegisterPage() {
 
             const response = await res.json();
             if(response.status != 'FAILED') {
-                
+
+            }
+            else {
+                throw new Error("Failed to verify otp")
             }
         }
-        catch (err) {
+        catch (err: any) {
             //permit retrial, sent toast to tell user it failed
+            toast.error(err?.message);
         }
     }
 
