@@ -117,6 +117,11 @@ export default function RegisterPage() {
 
                 //save user info
                 localStorage.setItem("userInfo", userInfo);
+
+                //redirect
+                router.replace('/start');
+                // Force a refresh by reloading the current page
+                window.location.reload();
             }
             else {
                 throw new Error("Failed to verify otp")
