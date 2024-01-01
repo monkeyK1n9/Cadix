@@ -8,6 +8,7 @@ import { validateEmail, validatePassword } from "@/utils/regex";
 import Link from "next/link";
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation";
+import { setHttpOnlyCookie } from "@/lib/user";
 
 type UserData = {
     email: string,
@@ -109,7 +110,10 @@ export default function RegisterPage() {
 
             const response = await res.json();
             if(response.status != 'FAILED') {
+                const { accessToken, ...userInfo} = response;
 
+                //save token
+                setHttpOnlyCookie("accessToken", accessToken, 90);
             }
             else {
                 throw new Error("Failed to verify otp")
