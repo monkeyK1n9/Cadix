@@ -9,7 +9,8 @@ import { getBlogsMeta } from "@/lib/blogs";
 import BlogElement from "@/components/BlogElement/BlogElement";
 
 export default async function StartPage() {
-    const user = getUser();
+    // const user = getUser();
+    const user = null;
 
     const userData = await user as any
 

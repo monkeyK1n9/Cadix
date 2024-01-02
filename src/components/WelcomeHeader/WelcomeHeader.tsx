@@ -50,7 +50,7 @@ export default function WelcomeHeader() {
                     </Link>
                 </div>
                 :
-                user ? (
+                !user ? (
                     <div className="relative">
                         <Image
                             src={user?.imageURL ? user.imageURL : Sample_User_Icon}

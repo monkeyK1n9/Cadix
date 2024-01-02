@@ -8,7 +8,6 @@ import { validateEmail, validatePassword } from "@/utils/regex";
 import Link from "next/link";
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation";
-import { setHttpOnlyCookie } from "@/lib/user";
 
 type UserData = {
     email: string,
@@ -137,6 +136,16 @@ export default function RegisterPage() {
             toast.error(err?.message);
             setLoading(false);
         }
+    }
+
+    // Function to set an HTTP-only cookie from the client side
+    const setHttpOnlyCookie = (name: string, value: string, expirationDays: number) => {
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + expirationDays);
+    
+        const cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
+    
+        document.cookie = cookieString;
     }
 
 

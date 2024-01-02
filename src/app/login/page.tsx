@@ -7,7 +7,6 @@ import { useState } from "react";
 import { validateEmail, validatePassword } from "@/utils/regex";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { setHttpOnlyCookie } from "@/lib/user";
 import toast, {Toaster} from "react-hot-toast";
 
 const INITIAL_USER_DATA = {
@@ -87,6 +86,16 @@ export default function LoginPage() {
         else {
             setLoading(false);
         }
+    }
+
+    // Function to set an HTTP-only cookie from the client side
+    const setHttpOnlyCookie = (name: string, value: string, expirationDays: number) => {
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + expirationDays);
+    
+        const cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; expires=${expirationDate.toUTCString()}; path=/`;
+    
+        document.cookie = cookieString;
     }
 
 
