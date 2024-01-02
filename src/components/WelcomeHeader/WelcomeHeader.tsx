@@ -53,7 +53,7 @@ export default function WelcomeHeader() {
                 user ? (
                     <div className="relative">
                         <Image
-                            src={user?.imageUrl ? user.imageUrl : Sample_User_Icon}
+                            src={user?.imageURL ? user.imageURL : Sample_User_Icon}
                             alt="profile"
                             className="rounded-3xl border-2 border-secondary"
                             width={45}
@@ -65,7 +65,7 @@ export default function WelcomeHeader() {
                                 <Link href="/start" className="text-white mb-3 block">
                                     Projects
                                 </Link>
-                                <Link href="/start" className="text-white mb-3 block">
+                                <Link href="/profile" className="text-white mb-3 block">
                                     Profile
                                 </Link>
                                 <button type="button" className="text-white flex-nowrap w-5" onClick={signOut}>
