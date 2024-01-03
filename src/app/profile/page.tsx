@@ -31,6 +31,8 @@ export default function ProfilePage() {
     useEffect(() => {
         setNewUsername(user?.username);
         setSelectedImage(user?.imageURL || null);
+
+        // IMPLEMENT REDIRECT IF USER IS NOT SIGNED IN TO WELCOME SCREEN
     }, [])
 
     return (
