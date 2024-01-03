@@ -11,3 +11,11 @@ type BlogPost = {
     meta: Meta,
     content: ReactElement<any, string | JSXElementConstructor<any>>,
 }
+
+type User = {
+    username: string,
+    email: string,
+    imageURL: string,
+    isAdmin: boolean,
+    isVerified: boolean,
+}
