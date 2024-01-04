@@ -5,12 +5,17 @@ import WelcomeHeader from "@/components/WelcomeHeader/WelcomeHeader";
 import Image from "next/image";
 import { IoMdPhotos } from "react-icons/io";
 import Sample_User_Icon from "@/assets/Sample_User_Icon.png";
+import {useRouter} from 'next/router'
 
 export default function ProfilePage() {
     const [newUsername, setNewUsername] = useState<string>("")
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [user, setUser] = useState<User | null>();
 
-    const user: any = { username: "My test username", email: "test@example.com" };
+    const router = useRouter();
+    const {userId} = router.query;
+
+    // const user: any = { username: "My test username", email: "test@example.com" };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -28,8 +33,26 @@ export default function ProfilePage() {
 
     }
 
+    const fetchUser = async (id: string, token: string) => {
+        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/user", {
+            method: "GET",
+            headers: {
+                token: "Bearer " + token
+            }
+        })
+
+        if (res.status === 200) {
+            return res.json();
+        }
+        else {
+            throw new Error("Request failed with status code: " + res.status);
+        }
+    }
+
     useEffect(() => {
-        setNewUsername(user?.username);
+
+
+        setNewUsername(user?.username || "");
         setSelectedImage(user?.imageURL || null);
 
         // IMPLEMENT REDIRECT IF USER IS NOT SIGNED IN TO WELCOME SCREEN
