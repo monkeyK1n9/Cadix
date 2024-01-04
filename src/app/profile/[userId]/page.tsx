@@ -6,10 +6,12 @@ import Image from "next/image";
 import { IoMdPhotos } from "react-icons/io";
 import Sample_User_Icon from "@/assets/Sample_User_Icon.png";
 import {useRouter} from 'next/router'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function ProfilePage() {
     const [newUsername, setNewUsername] = useState<string>("")
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
     const [user, setUser] = useState<User | null>();
 
     const router = useRouter();
@@ -29,8 +31,13 @@ export default function ProfilePage() {
         }
     };
 
-    const handleSaveProfile = () => {
+    const handleSaveProfile = async () => {
+        try {
 
+        }
+        catch (err: any) {
+            toast.error("Failed to save profile");
+        }
     }
 
     const fetchUser = async (id: string, token: string | null) => {
@@ -72,12 +79,13 @@ export default function ProfilePage() {
         const cookie = getCookie("accessToken");
 
         fetchUser(userId as string, cookie);
-        
+
     }, [])
 
     return (
         <>
         <WelcomeHeader />
+        <Toaster />
         <div className="mx-auto px-4 md:px-6 prose prose-2xl prose-slate flex flex-col justify-center items-center">
             <div className="relative mb-12 flex justify-center items-center">
                 <label htmlFor="imageInput" className="cursor-pointer">
@@ -116,7 +124,7 @@ export default function ProfilePage() {
                 className="border-2 rounded-lg border-primary text-white text-h3 text-center bg-primary px-5 py-2 cursor-pointer w-3/4"
                 onClick={handleSaveProfile}
             >
-                Save
+                { loading ? "Loading..." : "Save" }
             </button>
         </div>
         <CreditFooter />
