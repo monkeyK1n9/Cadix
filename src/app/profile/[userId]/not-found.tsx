@@ -8,7 +8,7 @@ export default function NotFound() {
         <WelcomeHeader />
         <div className="text-center">
             <p className="mt-10">Sorry, the requested user does not exist.</p>
-            <Link href="/" className="hover:text-black/70">⬅ Back</Link>
+            <Link href="/start" className="hover:text-black/70">⬅ Back</Link>
         </div>
         <CreditFooter />
         </>
