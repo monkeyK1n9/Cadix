@@ -33,7 +33,11 @@ export default function ProfilePage() {
 
     }
 
-    const fetchUser = async (id: string, token: string) => {
+    const fetchUser = async (id: string, token: string | null) => {
+        if (!token) {
+            throw new Error("Invalid access token");
+        }
+
         const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/user", {
             method: "GET",
             headers: {
@@ -42,20 +46,33 @@ export default function ProfilePage() {
         })
 
         if (res.status === 200) {
-            return res.json();
+            const response = await res.json();
+            setUser(response);
+            setNewUsername(response?.username || "");
+            setSelectedImage(response?.imageURL || null);
         }
         else {
             throw new Error("Request failed with status code: " + res.status);
         }
     }
 
+    function getCookie(name: string) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const [cookieName, cookieValue] = cookie.trim().split('=');
+            if (cookieName === name) {
+                return decodeURIComponent(cookieValue);
+            }
+        }
+        return null;
+    }
+
     useEffect(() => {
 
+        const cookie = getCookie("accessToken");
 
-        setNewUsername(user?.username || "");
-        setSelectedImage(user?.imageURL || null);
-
-        // IMPLEMENT REDIRECT IF USER IS NOT SIGNED IN TO WELCOME SCREEN
+        fetchUser(userId as string, cookie);
+        
     }, [])
 
     return (
