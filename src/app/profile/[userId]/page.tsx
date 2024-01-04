@@ -33,10 +33,34 @@ export default function ProfilePage() {
 
     const handleSaveProfile = async () => {
         try {
+            setLoading(true);
+            const token = getCookie("accessToken");
 
+            const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/user" + "/" + userId, {
+                method: "POST",
+                headers: {
+                    token: "Bearer " + token
+                },
+                body: JSON.stringify({
+                    file: "afd", // supply the file here
+                    username: newUsername
+                })
+            })
+
+            if(res.status === 200) {
+                toast.success("Profile saved successfully");
+                router.push("/start");
+                window.location.reload();
+                setLoading(false);
+            }
+            else {
+                toast.error("Failed to save profile");
+                setLoading(false);
+            }
         }
         catch (err: any) {
             toast.error("Failed to save profile");
+            setLoading(false);
         }
     }
 
@@ -45,7 +69,7 @@ export default function ProfilePage() {
             throw new Error("Invalid access token");
         }
 
-        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/user", {
+        const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_API_URL + "/api/v1/user" + "/" + userId, {
             method: "GET",
             headers: {
                 token: "Bearer " + token
