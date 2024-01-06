@@ -42,7 +42,7 @@ export default function ProfilePage() {
                     token: "Bearer " + token
                 },
                 body: JSON.stringify({
-                    file: "afd", // supply the file here
+                    file: selectedImage,
                     username: newUsername
                 })
             })

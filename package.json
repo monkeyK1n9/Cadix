@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/three": "^0.158.2",
     "@vercel/analytics": "^1.1.1",
+    "axios": "^1.6.5",
     "bim-fragment": "^1.2.0",
     "file-loader": "^6.2.0",
     "firebase": "^10.6.0",
