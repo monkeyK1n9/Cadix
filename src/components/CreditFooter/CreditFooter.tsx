@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaXTwitter} from 'react-icons/fa6'
-import {BsGithub} from 'react-icons/bs'
+import {MdMailOutline} from 'react-icons/md'
 import Link from 'next/link'
 
 export default function CreditFooter() {
@@ -18,11 +18,11 @@ export default function CreditFooter() {
                 </Link>
 
                 <Link
-                    href="https://github.com/monkeyK1n9"
+                    href="mailto:mkeyk1n9@gmail.com"
                     target='_blank'
                 >
-                    <BsGithub
-                        className="text-secondary text-h3 ml-2"
+                    <MdMailOutline
+                        className="text-secondary text-h2 ml-2"
                     />
                 </Link>
             </div>
