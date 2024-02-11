@@ -23,8 +23,8 @@ export default async function StartPage() {
     return (
         <>
             <WelcomeHeader />
-            <main className="flex max-sm:flex-col max-md:flex-row justify-around">
-                <div className="flex flex-col mt-3 px-3 w-full overflow-hidden">
+            <main className="flex max-md:flex-col justify-around">
+                <div className="flex flex-col mt-3 md:px-20 px-3 w-full overflow-hidden">
                     <div className="flex flex-row items-right justify-end w-full">
                         <Link
                             className="border-2 rounded-lg border-primary text-white bg-primary px-3 py-2"
@@ -70,7 +70,7 @@ export default async function StartPage() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col max-sm:border-t-2 max-sm:border-gray5 md:border-l-2 md:border-gray5 mt-3 px-3">
+                <div className="flex flex-col max-md:border-t-2 max-md:border-gray5 md:border-l-2 md:border-gray5 md:w-2/5 mt-3 md:pr-20 px-3 py-3">
                     <div className="flex flex-col">
                         <h1 className="text-gray3 text-h1 font-bold">
                             News
