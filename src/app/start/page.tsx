@@ -24,7 +24,15 @@ export default async function StartPage() {
         <>
             <WelcomeHeader />
             <main className="flex max-sm:flex-col max-md:flex-row justify-around">
-                <div className="flex flex-col mt-3 overflow-scroll px-3">
+                <div className="flex flex-col mt-3 px-20 w-full overflow-hidden">
+                    <div className="flex flex-row items-right justify-end w-full">
+                        <Link
+                            className="border-2 rounded-lg border-primary text-white bg-primary px-3 py-2"
+                            href="/project"
+                        >
+                            Create Project
+                        </Link>
+                    </div>
                     {userData?.projects?.length > 0 &&
                         <div className="flex flex-col">
                             <h1 className="text-gray3 text-h1 font-bold">
@@ -62,7 +70,7 @@ export default async function StartPage() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col max-sm:border-t-2 max-sm:border-gray5 md:border-l-2 md:border-gray5 mt-3 px-3">
+                <div className="flex flex-col max-sm:border-t-2 max-sm:border-gray5 md:border-l-2 md:border-gray5 mt-3 px-20">
                     <div className="flex flex-col">
                         <h1 className="text-gray3 text-h1 font-bold">
                             News
